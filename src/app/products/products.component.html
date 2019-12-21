@@ -1,0 +1,27 @@
+<div class="container">
+    <div id="products" class="row list-group" style="flex-direction:row">
+        
+        <div class="item  col-12 col-lg-6 col-md-6 col-sm-12 col-xl-6" *ngFor="let product of products">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{product.image}}" alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{product.name}}</h4>
+                    <p class="group inner list-group-item-text">
+                        {{product.description }}</p>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p class="lead">
+                                ${{product.cost}}</p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <a class="btn btn-success" href="#">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
