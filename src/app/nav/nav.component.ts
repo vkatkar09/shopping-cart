@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class NavComponent implements OnInit {
   products;
   totalCartCost=0;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private auth: AuthService) { }
   ngOnInit() {
     this.httpClient.get('http://localhost:3000/users/1').subscribe((res) => {
       this.products = res["cart"]
@@ -49,6 +50,10 @@ export class NavComponent implements OnInit {
       });
       this.totalCartCost = tempTotal;
     })
+  }
+
+  logout(){
+    this.auth.logout()
   }
 
 }
