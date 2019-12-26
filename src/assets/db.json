@@ -1,0 +1,200 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product001",
+      "cost": 10,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 2,
+      "name": "Product002",
+      "cost": 20,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 3,
+      "name": "Product003",
+      "cost": 30,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 4,
+      "name": "Product004",
+      "cost": 40,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 5,
+      "name": "Product005",
+      "cost": 10,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 6,
+      "name": "Product006",
+      "cost": 20,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 7,
+      "name": "Product007",
+      "cost": 30,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    },
+    {
+      "id": 8,
+      "name": "Product008",
+      "cost": 40,
+      "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+      "quantity": 1,
+      "image": "https://placeimg.com/500/300/tech"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Chandu",
+      "username": "chandu",
+      "password": "chandu",
+      "email": "chandu@chandu.chandu",
+      "image": "https://placeimg.com/500/300/tech",
+      "cart": [
+        {
+          "id": 2,
+          "name": "Product002",
+          "cost": 20,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 5,
+          "image": "https://placeimg.com/500/300/tech"
+        },
+        {
+          "id": 4,
+          "name": "Product004",
+          "cost": 40,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 1,
+          "image": "https://placeimg.com/500/300/tech"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "varsha",
+      "username": "varsha",
+      "password": "varsha",
+      "email": "varsha@varsha.varsha",
+      "image": "https://placeimg.com/500/300/tech",
+      "cart": [
+        {
+          "id": 3,
+          "name": "Product003",
+          "cost": 30,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 1,
+          "image": "https://placeimg.com/500/300/tech"
+        },
+        {
+          "id": 4,
+          "name": "Product004",
+          "cost": 40,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 1,
+          "image": "https://placeimg.com/500/300/tech"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ashwini",
+      "username": "ashwini",
+      "password": "ashwini",
+      "email": "ashwini@ashwini.ashwini",
+      "image": "https://placeimg.com/500/300/tech",
+      "cart": [
+        {
+          "id": 5,
+          "name": "Product005",
+          "cost": 10,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 2,
+          "image": "https://placeimg.com/500/300/tech"
+        },
+        {
+          "id": 6,
+          "name": "Product006",
+          "cost": 20,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 1,
+          "image": "https://placeimg.com/500/300/tech"
+        },
+        {
+          "id": 1,
+          "name": "Product001",
+          "cost": 10,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 3,
+          "image": "https://placeimg.com/500/300/tech"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "admin",
+      "username": "admin",
+      "password": "admin",
+      "email": "admin@admin.admin",
+      "image": "https://placeimg.com/500/300/tech",
+      "cart": [
+        {
+          "id": 7,
+          "name": "Product007",
+          "cost": 30,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 1,
+          "image": "https://placeimg.com/500/300/tech"
+        },
+        {
+          "id": 8,
+          "name": "Product008",
+          "cost": 40,
+          "description": "# Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+          "quantity": 1,
+          "image": "https://placeimg.com/500/300/tech"
+        }
+      ]
+    },
+    {
+      "name": "name",
+      "username": "abc@gmail.com",
+      "email": "abc@gmail.com",
+      "password": "1234",
+      "image": "https://placeimg.com/500/300/tech",
+      "cart": [],
+      "id": 5
+    },
+    {
+      "name": "rinku",
+      "username": "rinku@gmail.com",
+      "email": "rinku@gmail.com",
+      "password": "1234",
+      "image": "https://placeimg.com/500/300/tech",
+      "cart": [],
+      "id": 6
+    }
+  ]
+}
