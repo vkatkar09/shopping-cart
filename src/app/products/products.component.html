@@ -1,8 +1,8 @@
-<app-nav></app-nav>
+<app-nav [(searchModel)]="searchModel"></app-nav>
 <div class="container">
     <div id="products" class="row list-group" style="flex-direction:row">
         
-        <div class="item  col-12 col-lg-6 col-md-6 col-sm-12 col-xl-6" *ngFor="let product of products">
+        <div class="item  col-12 col-lg-6 col-md-6 col-sm-12 col-xl-6" *ngFor="let product of products | listFilter: searchModel" >
             <div class="thumbnail">
                 <img class="group list-group-image" src="{{product.image}}" alt="" />
                 <div class="caption">
@@ -16,7 +16,7 @@
                                 ${{product.cost}}</p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <a class="btn btn-success" href="#">Add to cart</a>
+                            <a class="btn btn-success" (click)="updateCart(product)">Add to cart</a>
                         </div>
                     </div>
                 </div>

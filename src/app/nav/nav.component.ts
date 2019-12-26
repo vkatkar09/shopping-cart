@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 
@@ -9,11 +9,24 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavComponent implements OnInit {
   products;
-  totalCartCost=0;
+  totalCartCost = 0;
+  currentUser = localStorage.getItem("LoggedInUser")
+  currentUserID;
+  @Input() searchModel;
+  @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
+
   constructor(private httpClient: HttpClient, private auth: AuthService) { }
+
   ngOnInit() {
-    this.httpClient.get('http://localhost:3000/users/1').subscribe((res) => {
-      this.products = res["cart"]
+
+    this.httpClient.get<any[]>('http://localhost:3000/users').subscribe((res) => {
+      var users = res;
+      users.forEach(element => {
+        if (element.email == this.currentUser) {
+          this.currentUserID = element.id;
+          this.products = element["cart"]
+        }
+      });
     });
   }
 
@@ -22,7 +35,7 @@ export class NavComponent implements OnInit {
   }
 
   updateTotalProductCost(value, productId) {
-    this.httpClient.get('http://localhost:3000/users/1').subscribe((res) => {
+    this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
       var temp = res;
       var tempCart = res["cart"];
       tempCart.forEach(element => {
@@ -31,29 +44,47 @@ export class NavComponent implements OnInit {
         }
       });
       temp["cart"] = tempCart
-      var tempTotal=0
+      var tempTotal = 0
       tempCart.forEach(element => {
-        tempTotal+= parseInt(element.quantity)*parseInt(element.cost)
-       });
-       this.totalCartCost = tempTotal;
-      this.httpClient.put("http://localhost:3000/users/1", temp ).subscribe((res) => {});
+        tempTotal += parseInt(element.quantity) * parseInt(element.cost)
+      });
+      this.totalCartCost = tempTotal;
+      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), temp).subscribe((res) => { });
     });
   }
 
-  updateCartTotal(){
-    this.httpClient.get('http://localhost:3000/users/1').subscribe((res) => {
+  updateCartTotal() {
+    this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
       var temp = res;
-      var tempTotal=0;
+      var tempTotal = 0;
       var tempCart = res["cart"];
       tempCart.forEach(element => {
-       tempTotal+= parseInt(element.quantity)*parseInt(element.cost)
+        tempTotal += parseInt(element.quantity) * parseInt(element.cost)
       });
       this.totalCartCost = tempTotal;
     })
   }
 
-  logout(){
+  logout() {
     this.auth.logout()
   }
 
+  removeFromCart(product) {
+    this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
+      var user = res;
+      var userCart = res["cart"];
+      var updatedUserCart = userCart.filter(function (item) {
+        return item.id !== product.id;
+      });
+      userCart = updatedUserCart
+      user["cart"] = userCart
+      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), user).subscribe((res) => { });
+    });
+  }
+
+  updateSearchModel(value){
+    console.log(value)
+    this.searchModel = value;
+    this.searchModelChange.emit(this.searchModel);
+  }
 }

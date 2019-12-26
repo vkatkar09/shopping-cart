@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './services/auth.guard';
+import { ListFilterPipe } from './pipes/list-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuthGuard } from './services/auth.guard';
     LoginComponent,
     ProductsComponent,
     RegisterComponent,
-    NavComponent
+    NavComponent,
+    ListFilterPipe
   ],
   imports: [
     BrowserModule,
