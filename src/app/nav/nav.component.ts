@@ -31,6 +31,11 @@ export class NavComponent implements OnInit {
           this.products = element["cart"]
         }
       });
+      var tempTotal = 0
+      this.products.forEach(element => {
+        tempTotal+= parseInt(element.cost)*parseInt(element.quantity);
+      });
+      this.totalCartCost = tempTotal;
     });
   }
   calculateIndividualTotal(cost, quantity) {
@@ -48,10 +53,10 @@ export class NavComponent implements OnInit {
       });
       temp["cart"] = tempCart
       var tempTotal = 0
-      tempCart.forEach(element => {
-        tempTotal += parseInt(element.quantity) * parseInt(element.cost)
-      });
-      this.totalCartCost = tempTotal;
+      // tempCart.forEach(element => {
+      //   tempTotal += parseInt(element.quantity) * parseInt(element.cost)
+      // });
+      // this.totalCartCost = tempTotal;
       this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), temp).subscribe((res) => { 
         this.getUserCartElements();
       });
