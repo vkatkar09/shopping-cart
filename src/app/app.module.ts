@@ -11,6 +11,7 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './services/auth.guard';
 import { ListFilterPipe } from './pipes/list-filter.pipe';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ListFilterPipe } from './pipes/list-filter.pipe';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

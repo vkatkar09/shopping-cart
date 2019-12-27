@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
   @Input() searchModel;
   @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private httpClient: HttpClient, private auth: AuthService) { }
+  constructor(private auth: AuthService, private myHTTPService: HttpService) { }
 
   ngOnInit() {
     this.getUserCartElements();
@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
   }
 
   getUserCartElements() {
-    this.httpClient.get<any[]>('http://localhost:3000/users').subscribe((res) => {
+    this.myHTTPService.getUsers().subscribe((res) => {
       var users = res;
       users.forEach(element => {
         if (element.email == this.currentUser) {
@@ -43,7 +43,8 @@ export class NavComponent implements OnInit {
   }
 
   updateTotalProductCost(value, productId) {
-    this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
+    
+    this.myHTTPService.getUser(this.currentUserID).subscribe((res) => {
       var temp = res;
       var tempCart = res["cart"];
       tempCart.forEach(element => {
@@ -57,14 +58,14 @@ export class NavComponent implements OnInit {
       //   tempTotal += parseInt(element.quantity) * parseInt(element.cost)
       // });
       // this.totalCartCost = tempTotal;
-      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), temp).subscribe((res) => { 
+      this.myHTTPService.updateUser(this.currentUserID, temp).subscribe((res) => { 
         this.getUserCartElements();
       });
     });
   }
 
   updateCartTotal(content) {
-    this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
+    this.myHTTPService.getUser(this.currentUserID).subscribe((res) => {
       this.getUserCartElements();
       var temp = res;
       var tempTotal = 0;
@@ -81,7 +82,7 @@ export class NavComponent implements OnInit {
   }
 
   removeFromCart(product) {
-    this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
+    this.myHTTPService.getUser(this.currentUserID).subscribe((res) => {
       var user = res;
       var userCart = res["cart"];
       var updatedUserCart = userCart.filter(function (item) {
@@ -89,7 +90,7 @@ export class NavComponent implements OnInit {
       });
       userCart = updatedUserCart
       user["cart"] = userCart
-      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), user).subscribe((res) => { 
+      this.myHTTPService.updateUser(this.currentUserID, user).subscribe((res) => { 
         this.getUserCartElements();
       });
     });

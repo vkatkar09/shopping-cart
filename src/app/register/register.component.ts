@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   public passwordError = false;
   public emptyFormError = false;
 
-  constructor(private httpClient: HttpClient, private route: Router) { }
+  constructor(private route: Router, private myHTTPService: HttpService) { }
 
   ngOnInit() {
   }
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       this.emptyFormError = true;
     }
     else{
-      this.httpClient.get<any[]>('http://localhost:3000/users').subscribe((res) => {
+      this.myHTTPService.getUsers().subscribe((res) => {
       var users = res;
       var exists = false;
       if (this.password != this.confirmPassword) {
@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
           newUser["password"] = this.password;
           newUser["image"] = "https://placeimg.com/500/300/tech";
           newUser["cart"] = [];
-          this.httpClient.post("http://localhost:3000/users", newUser).subscribe((res) => {
+          this.myHTTPService.addUser(newUser).subscribe((res) => {
             this.route.navigate(['/login']);
           });
         }

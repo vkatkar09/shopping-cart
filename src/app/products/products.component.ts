@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-products',
@@ -14,10 +14,10 @@ export class ProductsComponent implements OnInit {
   currentUser = localStorage.getItem("LoggedInUser")
   currentUserID;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private myHTTPService: HttpService) { }
 
   ngOnInit() {
-    this.httpClient.get<any[]>('http://localhost:3000/users').subscribe((res) => {
+    this.myHTTPService.getUsers().subscribe((res) => {
       var users = res;
       users.forEach(element => {
         if (element.email == this.currentUser) {
@@ -27,13 +27,13 @@ export class ProductsComponent implements OnInit {
       });
     });
 
-    this.httpClient.get('http://localhost:3000/products').subscribe((res)=>{
+    this.myHTTPService.getProducts().subscribe((res)=>{
       this.products =  res
   });
   }
 
   updateCart(product){
-    this.httpClient.get('http://localhost:3000/users/'+ parseInt(this.currentUserID)).subscribe((res) => {
+    this.myHTTPService.getUser(this.currentUserID).subscribe((res) => {
       var user = res;
       var keepGoing = true;
       var userCart = res["cart"];
@@ -49,7 +49,7 @@ export class ProductsComponent implements OnInit {
         userCart[userCart.length] = product
       }
       user["cart"] = userCart
-      this.httpClient.put("http://localhost:3000/users/"+ parseInt(this.currentUserID), user ).subscribe((res) => {});
+      this.myHTTPService.updateUser(this.currentUserID, user).subscribe((res) => {});
     });
   }
 }

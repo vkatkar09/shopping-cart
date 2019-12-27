@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   public email;
   public password;
   public loginError = false;
-  constructor(private httpClient: HttpClient, private route: Router, private auth: AuthService) { }
+  constructor(private route: Router, private auth: AuthService, private myHTTPService: HttpService) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.httpClient.get<any[]>('http://localhost:3000/users').subscribe((res) => {
+    this.myHTTPService.getUsers().subscribe((res) => {
       var users = res;
       var found = false;
       users.forEach(element => {
