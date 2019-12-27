@@ -29,7 +29,7 @@
         </ul>
         <form class="form-inline">
             <input class="form-control mr-sm-2" name="searchBar" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchModel" (ngModelChange)="updateSearchModel($event)">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cartModal" (click)="updateCartTotal()">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cartModal" (click)="updateCartTotal(cartModal)">
                 View Cart
             </button>
             <button type="button" class="btn btn-success" (click)="logout()">

@@ -18,7 +18,11 @@ export class NavComponent implements OnInit {
   constructor(private httpClient: HttpClient, private auth: AuthService) { }
 
   ngOnInit() {
+    this.getUserCartElements();
 
+  }
+
+  getUserCartElements() {
     this.httpClient.get<any[]>('http://localhost:3000/users').subscribe((res) => {
       var users = res;
       users.forEach(element => {
@@ -29,7 +33,6 @@ export class NavComponent implements OnInit {
       });
     });
   }
-
   calculateIndividualTotal(cost, quantity) {
     return cost * quantity;
   }
@@ -49,12 +52,15 @@ export class NavComponent implements OnInit {
         tempTotal += parseInt(element.quantity) * parseInt(element.cost)
       });
       this.totalCartCost = tempTotal;
-      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), temp).subscribe((res) => { });
+      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), temp).subscribe((res) => { 
+        this.getUserCartElements();
+      });
     });
   }
 
-  updateCartTotal() {
+  updateCartTotal(content) {
     this.httpClient.get('http://localhost:3000/users/' + parseInt(this.currentUserID)).subscribe((res) => {
+      this.getUserCartElements();
       var temp = res;
       var tempTotal = 0;
       var tempCart = res["cart"];
@@ -78,11 +84,13 @@ export class NavComponent implements OnInit {
       });
       userCart = updatedUserCart
       user["cart"] = userCart
-      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), user).subscribe((res) => { });
+      this.httpClient.put("http://localhost:3000/users/" + parseInt(this.currentUserID), user).subscribe((res) => { 
+        this.getUserCartElements();
+      });
     });
   }
 
-  updateSearchModel(value){
+  updateSearchModel(value) {
     console.log(value)
     this.searchModel = value;
     this.searchModelChange.emit(this.searchModel);
